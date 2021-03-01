@@ -6,11 +6,15 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="heading text-center">
-                    <h2>{{ .Site.Params.testimonials.title }}</h2>
+                    <h2>{{ .Site.Params.testimonials.title }}</a></h2>
                 </div>
 
                 <p class="lead">
-                  {{ .Site.Params.testimonials.subtitle | markdownify }}
+                    {{ .Site.Params.testimonials.subtitle | markdownify }}
+                    {{ if isset .Site.Params.testimonials "link" }}
+                    <br />
+                    <a href="{{ .Site.Params.testimonials.link }}">See more >></a>
+                    {{end}}
                 </p>
 
                 <!-- *** TESTIMONIALS CAROUSEL *** -->
@@ -29,6 +33,27 @@
                                     <img class="" alt="" src="{{ .avatar | absURL }}">
                                     <h5>{{ .name }}</h5>
                                     <p>{{ .position }}</p>
+                                    {{ if ge (.score) 3 }}
+                                    <p>
+                                        {{ if le (.score) 4 }}
+                                        <img alt="empty star" style="height:19px;width:19px" src="//maps.gstatic.com/consumer/images/icons/2x/ic_star_rate_empty_14.png">
+                                        {{ end }}
+                                        {{ if le (.score) 3 }}
+                                        <img alt="empty star" style="height:19px;width:19px" src="//maps.gstatic.com/consumer/images/icons/2x/ic_star_rate_empty_14.png">
+                                        {{ end }}
+                                        {{ if ge (.score) 3 }}
+                                        <img alt="full star" style="height:19px;width:19px" src="//maps.gstatic.com/consumer/images/icons/2x/ic_star_rate_14.png">
+                                        {{ end }}
+                                        {{ if ge (.score) 4 }}
+                                        <img alt="full star" style="height:19px;width:19px" src="//maps.gstatic.com/consumer/images/icons/2x/ic_star_rate_14.png">
+                                        {{ end }}
+                                        {{ if ge (.score) 5 }}
+                                        <img alt="full star" style="height:19px;width:19px" src="//maps.gstatic.com/consumer/images/icons/2x/ic_star_rate_14.png">
+                                        {{ end }}
+                                        <img alt="full star" style="height:19px;width:19px" src="//maps.gstatic.com/consumer/images/icons/2x/ic_star_rate_14.png">
+                                        <img alt="full star" style="height:19px;width:19px" src="//maps.gstatic.com/consumer/images/icons/2x/ic_star_rate_14.png">
+                                    </p>
+                                    {{end}}
                                 </div>
                             </div>
                         </div>
